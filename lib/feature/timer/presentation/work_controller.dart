@@ -1,83 +1,87 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:stamp_rally_worship/feature/timer/domain/work.dart';
 import 'package:stamp_rally_worship/feature/timer/repository/work_repository.dart';
 part 'work_controller.g.dart';
 
 @riverpod
 class WorkController extends _$WorkController {
   WorkRepository get _workRepository => ref.read(workRepositoryProvider);
+  
   @override
-  void build() async {
+  Future<Work?> build() async {
+    return null;
   }
 
-  Future<void> createWork()async{
-    // await _workRepository.createWork(
-    // )
+  /// タイマー開始時に作業データを作成
+  Future<Work> createWork({
+    required String name,
+    required int userId,
+  }) async {
+    state = const AsyncValue.loading();
+    
+    final now = DateTime.now();
+    // 初期状態はrunning
+    final work = await _workRepository.createWork(
+      name: name,
+      status: WorkStatus.running,
+      startDate: now,
+      endDate: now.add(const Duration(hours: 1)), // 仮の終了時間（1時間後）
+      createdBy: userId,
+    );
+    
+    state = AsyncValue.data(work);
+    return work;
   }
 
-  // Future<List<Work>>
+  /// タイマーポーズ時にステータスを更新
+  Future<Work?> updateToPaused({
+    required int workId,
+    required int userId,
+  }) async {
+    state = const AsyncValue.loading();
+    
+    final work = await _workRepository.updateWork(
+      id: workId,
+      status: WorkStatus.pose,
+      updatedBy: userId,
+    );
+    
+    state = AsyncValue.data(work);
+    return work;
+  }
 
-  // WorkRepository get _workerRepository  => ref.read(workRepositoryProvider)
+  /// タイマー再開時にステータスを更新
+  Future<Work?> updateToRunning({
+    required int workId,
+    required int userId,
+  }) async {
+    state = const AsyncValue.loading();
+    
+    final work = await _workRepository.updateWork(
+      id: workId,
+      status: WorkStatus.running,
+      updatedBy: userId,
+    );
+    
+    state = AsyncValue.data(work);
+    return work;
+  }
 
-  // Future<void> createWork({
-  //   required String name,
-  //   required WorkStatus status,
-  //   required DateTime startDate,
-  //   required DateTime endDate,
-  //   required int createdBy,
-  // }) async {
-  //   state = const AsyncValue.loading();
-  //   state = await AsyncValue.guard(() async {
-  //     await ref.read(workRepositoryProvider).createWork(
-  //           name: name,
-  //           status: status,
-  //           startDate: startDate,
-  //           endDate: endDate,
-  //           createdBy: createdBy,
-  //         );
-  //     return ref.read(workRepositoryProvider).getWorks();
-  //   });
-  // }
-  //
-  // Future<void> updateWork({
-  //   required int id,
-  //   String? name,
-  //   WorkStatus? status,
-  //   DateTime? startDate,
-  //   DateTime? endDate,
-  //   required int updatedBy,
-  // }) async {
-  //   state = const AsyncValue.loading();
-  //   state = await AsyncValue.guard(() async {
-  //     await ref.read(workRepositoryProvider).updateWork(
-  //           id: id,
-  //           name: name,
-  //           status: status,
-  //           startDate: startDate,
-  //           endDate: endDate,
-  //           updatedBy: updatedBy,
-  //         );
-  //     return ref.read(workRepositoryProvider).getWorks();
-  //   });
-  // }
-  //
-  // Future<void> deleteWork({
-  //   required int id,
-  //   required int deletedBy,
-  // }) async {
-  //   state = const AsyncValue.loading();
-  //   state = await AsyncValue.guard(() async {
-  //     await ref.read(workRepositoryProvider).deleteWork(
-  //           id: id,
-  //           deletedBy: deletedBy,
-  //         );
-  //     return ref.read(workRepositoryProvider).getWorks();
-  //   });
-  // }
-  //
-  // Future<void> refresh() async {
-  //   state = const AsyncValue.loading();
-  //   state = await AsyncValue.guard(() async {
-  //     return ref.read(workRepositoryProvider).getWorks();
-  //   });
-  // }
+  /// タイマー終了時にステータスを更新
+  Future<Work?> updateToFinished({
+    required int workId,
+    required int userId,
+  }) async {
+    state = const AsyncValue.loading();
+    
+    final work = await _workRepository.updateWork(
+      id: workId,
+      status: WorkStatus.finish,
+      endDate: DateTime.now(), // 実際の終了時間を設定
+      updatedBy: userId,
+    );
+    
+    state = AsyncValue.data(work);
+    return work;
+  }
 } 
