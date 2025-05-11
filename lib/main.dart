@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:stamp_rally_worship/core/utility/logger.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'app.dart';
@@ -11,6 +12,7 @@ Future<void> main() async {
     url: url,
     anonKey: anonKey,
   );
+  LoggerClass.configure();
   runApp(const ProviderScope(child: MyApp()));
 }
 

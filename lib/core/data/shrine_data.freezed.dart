@@ -37,8 +37,12 @@ mixin _$ShrineData {
   @JsonKey(name: 'updated_at')
   DateTime get updatedAt => throw _privateConstructorUsedError;
 
+  /// Serializes this ShrineData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ShrineData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ShrineDataCopyWith<ShrineData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -73,6 +77,8 @@ class _$ShrineDataCopyWithImpl<$Res, $Val extends ShrineData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ShrineData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -167,6 +173,8 @@ class __$$ShrineDataImplCopyWithImpl<$Res>
       _$ShrineDataImpl _value, $Res Function(_$ShrineDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ShrineData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -309,12 +317,14 @@ class _$ShrineDataImpl extends _ShrineData {
                 other.updatedAt == updatedAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, idPlace, name, areaName,
       ruby, latitude, longitude, typeRegisterStamp, url, createdAt, updatedAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ShrineData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ShrineDataImplCopyWith<_$ShrineDataImpl> get copyWith =>
@@ -375,8 +385,11 @@ abstract class _ShrineData extends ShrineData {
   @override
   @JsonKey(name: 'updated_at')
   DateTime get updatedAt;
+
+  /// Create a copy of ShrineData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ShrineDataImplCopyWith<_$ShrineDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

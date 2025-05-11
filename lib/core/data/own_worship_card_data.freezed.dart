@@ -20,7 +20,6 @@ OwnWorshipCardData _$OwnWorshipCardDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$OwnWorshipCardData {
-  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'id_worship_card')
   int? get idWorshipCard => throw _privateConstructorUsedError;
   @JsonKey(name: 'id_user')
@@ -32,8 +31,12 @@ mixin _$OwnWorshipCardData {
   @JsonKey(name: 'updated_at')
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
+  /// Serializes this OwnWorshipCardData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of OwnWorshipCardData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $OwnWorshipCardDataCopyWith<OwnWorshipCardData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,8 +48,7 @@ abstract class $OwnWorshipCardDataCopyWith<$Res> {
       _$OwnWorshipCardDataCopyWithImpl<$Res, OwnWorshipCardData>;
   @useResult
   $Res call(
-      {int? id,
-      @JsonKey(name: 'id_worship_card') int? idWorshipCard,
+      {@JsonKey(name: 'id_worship_card') int? idWorshipCard,
       @JsonKey(name: 'id_user') int? idUser,
       @JsonKey(name: 'number') String? number,
       @JsonKey(name: 'created_at') DateTime? createdAt,
@@ -63,10 +65,11 @@ class _$OwnWorshipCardDataCopyWithImpl<$Res, $Val extends OwnWorshipCardData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of OwnWorshipCardData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? idWorshipCard = freezed,
     Object? idUser = freezed,
     Object? number = freezed,
@@ -74,10 +77,6 @@ class _$OwnWorshipCardDataCopyWithImpl<$Res, $Val extends OwnWorshipCardData>
     Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
       idWorshipCard: freezed == idWorshipCard
           ? _value.idWorshipCard
           : idWorshipCard // ignore: cast_nullable_to_non_nullable
@@ -111,8 +110,7 @@ abstract class _$$OwnWorshipCardDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
-      @JsonKey(name: 'id_worship_card') int? idWorshipCard,
+      {@JsonKey(name: 'id_worship_card') int? idWorshipCard,
       @JsonKey(name: 'id_user') int? idUser,
       @JsonKey(name: 'number') String? number,
       @JsonKey(name: 'created_at') DateTime? createdAt,
@@ -127,10 +125,11 @@ class __$$OwnWorshipCardDataImplCopyWithImpl<$Res>
       $Res Function(_$OwnWorshipCardDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OwnWorshipCardData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? idWorshipCard = freezed,
     Object? idUser = freezed,
     Object? number = freezed,
@@ -138,10 +137,6 @@ class __$$OwnWorshipCardDataImplCopyWithImpl<$Res>
     Object? updatedAt = freezed,
   }) {
     return _then(_$OwnWorshipCardDataImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
       idWorshipCard: freezed == idWorshipCard
           ? _value.idWorshipCard
           : idWorshipCard // ignore: cast_nullable_to_non_nullable
@@ -170,8 +165,7 @@ class __$$OwnWorshipCardDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OwnWorshipCardDataImpl extends _OwnWorshipCardData {
   const _$OwnWorshipCardDataImpl(
-      {this.id,
-      @JsonKey(name: 'id_worship_card') this.idWorshipCard,
+      {@JsonKey(name: 'id_worship_card') this.idWorshipCard,
       @JsonKey(name: 'id_user') this.idUser,
       @JsonKey(name: 'number') this.number,
       @JsonKey(name: 'created_at') this.createdAt,
@@ -181,8 +175,6 @@ class _$OwnWorshipCardDataImpl extends _OwnWorshipCardData {
   factory _$OwnWorshipCardDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$OwnWorshipCardDataImplFromJson(json);
 
-  @override
-  final int? id;
   @override
   @JsonKey(name: 'id_worship_card')
   final int? idWorshipCard;
@@ -201,7 +193,7 @@ class _$OwnWorshipCardDataImpl extends _OwnWorshipCardData {
 
   @override
   String toString() {
-    return 'OwnWorshipCardData(id: $id, idWorshipCard: $idWorshipCard, idUser: $idUser, number: $number, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'OwnWorshipCardData(idWorshipCard: $idWorshipCard, idUser: $idUser, number: $number, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -209,7 +201,6 @@ class _$OwnWorshipCardDataImpl extends _OwnWorshipCardData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OwnWorshipCardDataImpl &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.idWorshipCard, idWorshipCard) ||
                 other.idWorshipCard == idWorshipCard) &&
             (identical(other.idUser, idUser) || other.idUser == idUser) &&
@@ -220,12 +211,14 @@ class _$OwnWorshipCardDataImpl extends _OwnWorshipCardData {
                 other.updatedAt == updatedAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, idWorshipCard, idUser, number, createdAt, updatedAt);
+      runtimeType, idWorshipCard, idUser, number, createdAt, updatedAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OwnWorshipCardData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OwnWorshipCardDataImplCopyWith<_$OwnWorshipCardDataImpl> get copyWith =>
@@ -242,8 +235,7 @@ class _$OwnWorshipCardDataImpl extends _OwnWorshipCardData {
 
 abstract class _OwnWorshipCardData extends OwnWorshipCardData {
   const factory _OwnWorshipCardData(
-          {final int? id,
-          @JsonKey(name: 'id_worship_card') final int? idWorshipCard,
+          {@JsonKey(name: 'id_worship_card') final int? idWorshipCard,
           @JsonKey(name: 'id_user') final int? idUser,
           @JsonKey(name: 'number') final String? number,
           @JsonKey(name: 'created_at') final DateTime? createdAt,
@@ -254,8 +246,6 @@ abstract class _OwnWorshipCardData extends OwnWorshipCardData {
   factory _OwnWorshipCardData.fromJson(Map<String, dynamic> json) =
       _$OwnWorshipCardDataImpl.fromJson;
 
-  @override
-  int? get id;
   @override
   @JsonKey(name: 'id_worship_card')
   int? get idWorshipCard;
@@ -271,8 +261,11 @@ abstract class _OwnWorshipCardData extends OwnWorshipCardData {
   @override
   @JsonKey(name: 'updated_at')
   DateTime? get updatedAt;
+
+  /// Create a copy of OwnWorshipCardData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OwnWorshipCardDataImplCopyWith<_$OwnWorshipCardDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

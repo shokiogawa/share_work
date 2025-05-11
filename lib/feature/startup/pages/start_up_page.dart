@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stamp_rally_worship/core/router/router.dart';
+import 'package:stamp_rally_worship/core/usecase/auth/auth_use_case.dart';
+import 'package:stamp_rally_worship/core/usecase/auth/check_login_status_use_case.dart';
+import 'package:stamp_rally_worship/feature/main.dart';
 import 'package:stamp_rally_worship/feature/startup/usecases/start_up_use_case.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../../../core/utility/logger.dart';
 
 class StartUpPage extends HookConsumerWidget {
   const StartUpPage({super.key});
@@ -13,22 +18,59 @@ class StartUpPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    useEffect(() {
-      // mainを抜けた時点で実行されるのがmicrotask、useEffect内でasync/awaitを使用したい時などに使用する。
-      Future.microtask(() async {
-        final state = await ref.watch(startUpUseCaseProvider.future);
-        if (state == StartUpResultType.forceVersionUp) {
-          // ダイアログ表示
-          return;
-        }
-        // 場所一覧ページに遷移する。
+    final authUseCase = ref.watch(authUseCaseProvider.notifier);
+    Future(() async {
+      if (await authUseCase.isLogin()) {
         if (context.mounted) {
-          const PlaceListPageRoute().pushReplacement(context);
+          const MainScreenRoute().pushReplacement(context);
+          // const WorkspaceListPageRoute().pushReplacement(context);
         }
-        return null;
-        // 非同期処理を行う。
-      });
-    }, const []);
+      } else {
+        if (context.mounted) {
+          const LoginSignInPageRoute().pushReplacement(context);
+        }
+      }
+    });
+
+    // ref
+    //   ..watch(checkLoginStatusUseCaseProvider)
+    //   ..listen(checkLoginStatusUseCaseProvider, (previous, next) async {
+    //     switch (next) {
+    //       case AsyncData(:final value):
+    //         final state = await ref.watch(startUpUseCaseProvider.future);
+    //         if (state == StartUpResultType.forceVersionUp) {
+    //           // ダイアログ表示
+    //           const WorkspaceListPageRoute().pushReplacement(context);
+    //           return;
+    //         }
+    //         final session = value.session;
+    //         logger.i(session);
+    //
+    //         // サインイン
+    //         if (value.session != null) {
+    //           if (context.mounted) {
+    //             const WorkspaceListPageRoute().pushReplacement(context);
+    //             return;
+    //           }
+    //         }
+    //
+    //         // ログイン or サインイン
+    //         if (value.session == null) {
+    //           if (context.mounted) {
+    //             // const LoginSignInPageRoute().pushReplacement(context);
+    //             const WorkspaceListPageRoute().pushReplacement(context);
+    //             return;
+    //           }
+    //         }
+    //
+    //         // サインアウト
+    //         if (value.event == AuthChangeEvent.signedOut) {
+    //           // ログインページに遷移
+    //           const WorkspaceListPageRoute().pushReplacement(context);
+    //         }
+    //         const WorkspaceListPageRoute().pushReplacement(context);
+    //     }
+    //   });
 
     return Scaffold(
       body: Column(
@@ -38,7 +80,11 @@ class StartUpPage extends HookConsumerWidget {
           const Align(
               // alignment: Alignment.center,
               child: Text('最新のバージョンがリリースされています。')),
-          TextButton(onPressed: () {}, child: const Text('アプリストアへ遷移する。'))
+          TextButton(
+              onPressed: () {
+                const WorkspaceListPageRoute().pushReplacement(context);
+              },
+              child: const Text('アプリストアへ遷移する。'))
         ],
       ),
     );

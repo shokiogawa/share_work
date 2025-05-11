@@ -1,43 +1,27 @@
--- users
-INSERT INTO users (uuid, name, email) VALUES
-('550e8400-e29b-41d4-a716-446655440000', 'Alice Johnson', 'alice@example.com'),
-('550e8400-e29b-41d4-a716-446655440001', 'Bob Smith', 'bob@example.com'),
-('550e8400-e29b-41d4-a716-446655440002', 'Charlie Brown', 'charlie@example.com'),
-('550e8400-e29b-41d4-a716-446655440003', 'Dana White', 'dana@example.com'),
-('550e8400-e29b-41d4-a716-446655440004', 'Evan Green', 'evan@example.com');
+-- サンプルデータ: bgmsテーブル
+INSERT INTO bgms (title, artist, music_url, description, is_active)
+VALUES
+  ('リラックス BGM', 'リラックスミュージック', 'https://senmgccaddgpcsxjokld.supabase.co/storage/v1/object/public/bgm//220_long_BPM86.mp3', 'リラックスできる静かなBGM', TRUE),
+  ('集中力アップ BGM', 'フォーカスサウンド', 'https://senmgccaddgpcsxjokld.supabase.co/storage/v1/object/public/bgm//220_long_BPM86.mp3', '集中力を高めるBGM', TRUE),
+  ('モチベーション向上 BGM', 'モチベーションミュージック', 'https://senmgccaddgpcsxjokld.supabase.co/storage/v1/object/public/bgm//220_long_BPM86.mp3', 'モチベーションを高めるBGM', TRUE),
+  ('瞑想 BGM', 'メディテーションミュージック', 'https://senmgccaddgpcsxjokld.supabase.co/storage/v1/object/public/bgm//220_long_BPM86.mp3', '瞑想に適したBGM', TRUE),
+  ('クリエイティブ BGM', 'クリエイティブサウンド', 'https://senmgccaddgpcsxjokld.supabase.co/storage/v1/object/public/bgm//220_long_BPM86.mp3', 'クリエイティブな作業に適したBGM', TRUE),
+  ('運動 BGM', 'エクササイズミュージック', 'https://senmgccaddgpcsxjokld.supabase.co/storage/v1/object/public/bgm//220_long_BPM86.mp3', '運動に適したBGM', TRUE),
+  ('読書 BGM', 'リーディングミュージック', 'https://senmgccaddgpcsxjokld.supabase.co/storage/v1/object/public/bgm//220_long_BPM86.mp3', '読書に適したBGM', TRUE),
+  ('睡眠 BGM', 'スリープミュージック', 'https://senmgccaddgpcsxjokld.supabase.co/storage/v1/object/public/bgm//294_long_BPM88.mp3', '睡眠に適したBGM', TRUE),
+  ('朝活 BGM', 'モーニングミュージック', 'https://senmgccaddgpcsxjokld.supabase.co/storage/v1/object/public/bgm//294_long_BPM88.mp3', '朝活に適したBGM', TRUE),
+  ('夜活 BGM', 'ナイトミュージック', 'hhttps://senmgccaddgpcsxjokld.supabase.co/storage/v1/object/public/bgm//294_long_BPM88.mp3', '夜活に適したBGM', TRUE);
 
--- places
-INSERT INTO places (name) VALUES
-  ('東京'),
-  ('大阪'),
-  ('京都'),
-  ('札幌');
-
--- srine
-INSERT INTO shrines (id_place, name, ruby, latitude, longitude, type_register_stamp, url) VALUES
-(1, '明治神宮', 'めいじじんぐう', 35.6762, 139.6993, 'gps', 'https://www.meijijingu.or.jp/'),
-(1, '伏見稲荷大社', 'ふしみいなりたいしゃ', 34.9671, 135.7727, 'gps', 'http://inari.jp/'),
-(1, '伊勢神宮', 'いせじんぐう', 34.4565, 136.7254, 'gps', 'https://www.isejingu.or.jp/'),
-(1, '厳島神社', 'いつくしまじんじゃ', 34.2954, 132.3195, 'gps', 'https://www.miyajima-wch.jp/'),
-(1, '出雲大社', 'いずもたいしゃ', 35.3994, 132.6854, 'gps', 'https://izumooyashiro.or.jp/'),
-(2, '春日大社', 'かすがたいしゃ', 34.6824, 135.8481, 'gps', 'https://www.kasugataisha.or.jp/'),
-(2, '八坂神社', 'やさかじんじゃ', 35.0037, 135.7784, 'gps', 'https://www.yasaka-jinja.or.jp/'),
-(3, '松尾大社', 'まつのおたいしゃ', 34.9951, 135.6867, 'gps', 'https://www.matsunoo.or.jp/'),
-(3, '北野天満宮', 'きたのてんまんぐう', 35.0303, 135.7489, 'gps', 'https://kitanotenmangu.or.jp/');
-
--- worship_cards
-INSERT INTO worship_cards (id_shrine, comment, is_current) VALUES
-(1,  '初詣に訪れました。', 1),
-(2,  '紅葉がとても美しかったです。', 1),
-(3,  '大変混雑していましたが、参拝できました。', 1),
-(4,  '厳島神社の景色は素晴らしかったです。', 1),
-(5,  '出雲大社で特別な祈祷を受けました。', 1);
-
--- own-worship-card
-INSERT INTO own_worship_cards (id_worship_card, id_user, number) VALUES
-(1, 1, '0001'),
-(2, 1, '0001'),
-(3, 1, '0001'),
-(4, 1, '0001'),
-(5, 1, '0001'),
-(1, 1, '0001');
+-- サンプルデータ: work_space_categoriesテーブル
+INSERT INTO work_space_categories (name, description, is_active)
+VALUES
+  ('試験勉強', '大学入試、高校入試などの試験勉強に適したワークスペース', TRUE),
+  ('資格勉強', '資格取得のための勉強に適したワークスペース', TRUE),
+  ('仕事', 'リモートワークや在宅勤務などの仕事に適したワークスペース', TRUE),
+  ('趣味', '趣味活動に適したワークスペース', TRUE),
+  ('読書', '読書に適したワークスペース', TRUE),
+  ('創作活動', '絵画、音楽、文章作成などの創作活動に適したワークスペース', TRUE),
+  ('運動', '運動やエクササイズに適したワークスペース', TRUE),
+  ('瞑想', '瞑想やリラックスに適したワークスペース', TRUE),
+  ('語学学習', '語学学習に適したワークスペース', TRUE),
+  ('その他', 'その他の目的に適したワークスペース', TRUE); 

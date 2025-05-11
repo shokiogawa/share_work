@@ -9,7 +9,6 @@ part of 'own_worship_card_data.dart';
 _$OwnWorshipCardDataImpl _$$OwnWorshipCardDataImplFromJson(
         Map<String, dynamic> json) =>
     _$OwnWorshipCardDataImpl(
-      id: (json['id'] as num?)?.toInt(),
       idWorshipCard: (json['id_worship_card'] as num?)?.toInt(),
       idUser: (json['id_user'] as num?)?.toInt(),
       number: json['number'] as String?,
@@ -24,7 +23,6 @@ _$OwnWorshipCardDataImpl _$$OwnWorshipCardDataImplFromJson(
 Map<String, dynamic> _$$OwnWorshipCardDataImplToJson(
         _$OwnWorshipCardDataImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'id_worship_card': instance.idWorshipCard,
       'id_user': instance.idUser,
       'number': instance.number,

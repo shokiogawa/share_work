@@ -32,8 +32,12 @@ mixin _$WorshipCardData {
   @JsonKey(name: 'updated_at')
   DateTime get updatedAt => throw _privateConstructorUsedError;
 
+  /// Serializes this WorshipCardData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WorshipCardData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $WorshipCardDataCopyWith<WorshipCardData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -64,6 +68,8 @@ class _$WorshipCardDataCopyWithImpl<$Res, $Val extends WorshipCardData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of WorshipCardData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -134,6 +140,8 @@ class __$$WorshipCardDataImplCopyWithImpl<$Res>
       _$WorshipCardDataImpl _value, $Res Function(_$WorshipCardDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WorshipCardData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -236,12 +244,14 @@ class _$WorshipCardDataImpl extends _WorshipCardData {
                 other.updatedAt == updatedAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, idShrine, number, comment,
       isCurrent, createdAt, updatedAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WorshipCardData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WorshipCardDataImplCopyWith<_$WorshipCardDataImpl> get copyWith =>
@@ -289,8 +299,11 @@ abstract class _WorshipCardData extends WorshipCardData {
   @override
   @JsonKey(name: 'updated_at')
   DateTime get updatedAt;
+
+  /// Create a copy of WorshipCardData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WorshipCardDataImplCopyWith<_$WorshipCardDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -15,21 +15,34 @@ RouteBase get $startUpPageRoute => GoRouteData.$route(
       factory: $StartUpPageRouteExtension._fromState,
       routes: [
         GoRouteData.$route(
-          path: 'place_list',
-          name: 'place_list',
-          factory: $PlaceListPageRouteExtension._fromState,
+          path: 'main',
+          name: 'main',
+          factory: $MainScreenRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'login_sign_in',
+          name: 'login_sign_in',
+          factory: $LoginSignInPageRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'timer',
+          name: 'timer',
+          factory: $TimerPageRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'workspaces',
+          name: 'workspace_list',
+          factory: $WorkspaceListPageRouteExtension._fromState,
           routes: [
             GoRouteData.$route(
-              path: 'shrine_list/:placeId',
-              name: 'shrine_list',
-              factory: $ShrineListPageRouteExtension._fromState,
-              routes: [
-                GoRouteData.$route(
-                  path: 'detail/:shrineId',
-                  name: 'shrine_detail',
-                  factory: $ShrineDetailPageRouteExtension._fromState,
-                ),
-              ],
+              path: 'workspaces/create',
+              name: 'workspace_create',
+              factory: $WorkspaceCreatePageRouteExtension._fromState,
+            ),
+            GoRouteData.$route(
+              path: 'workspaces/:id',
+              name: 'workspace',
+              factory: $WorkspacePageRouteExtension._fromState,
             ),
           ],
         ),
@@ -54,12 +67,12 @@ extension $StartUpPageRouteExtension on StartUpPageRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $PlaceListPageRouteExtension on PlaceListPageRoute {
-  static PlaceListPageRoute _fromState(GoRouterState state) =>
-      const PlaceListPageRoute();
+extension $MainScreenRouteExtension on MainScreenRoute {
+  static MainScreenRoute _fromState(GoRouterState state) =>
+      const MainScreenRoute();
 
   String get location => GoRouteData.$location(
-        '/place_list',
+        '/main',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -72,14 +85,12 @@ extension $PlaceListPageRouteExtension on PlaceListPageRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $ShrineListPageRouteExtension on ShrineListPageRoute {
-  static ShrineListPageRoute _fromState(GoRouterState state) =>
-      ShrineListPageRoute(
-        placeId: int.parse(state.pathParameters['placeId']!),
-      );
+extension $LoginSignInPageRouteExtension on LoginSignInPageRoute {
+  static LoginSignInPageRoute _fromState(GoRouterState state) =>
+      const LoginSignInPageRoute();
 
   String get location => GoRouteData.$location(
-        '/place_list/shrine_list/${Uri.encodeComponent(placeId.toString())}',
+        '/login_sign_in',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -92,15 +103,68 @@ extension $ShrineListPageRouteExtension on ShrineListPageRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $ShrineDetailPageRouteExtension on ShrineDetailPageRoute {
-  static ShrineDetailPageRoute _fromState(GoRouterState state) =>
-      ShrineDetailPageRoute(
-        placeId: int.parse(state.pathParameters['placeId']!),
-        shrineId: int.parse(state.pathParameters['shrineId']!),
+extension $TimerPageRouteExtension on TimerPageRoute {
+  static TimerPageRoute _fromState(GoRouterState state) =>
+      const TimerPageRoute();
+
+  String get location => GoRouteData.$location(
+        '/timer',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $WorkspaceListPageRouteExtension on WorkspaceListPageRoute {
+  static WorkspaceListPageRoute _fromState(GoRouterState state) =>
+      const WorkspaceListPageRoute();
+
+  String get location => GoRouteData.$location(
+        '/workspaces',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $WorkspaceCreatePageRouteExtension on WorkspaceCreatePageRoute {
+  static WorkspaceCreatePageRoute _fromState(GoRouterState state) =>
+      const WorkspaceCreatePageRoute();
+
+  String get location => GoRouteData.$location(
+        '/workspaces/workspaces/create',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $WorkspacePageRouteExtension on WorkspacePageRoute {
+  static WorkspacePageRoute _fromState(GoRouterState state) =>
+      WorkspacePageRoute(
+        id: int.parse(state.pathParameters['id']!),
       );
 
   String get location => GoRouteData.$location(
-        '/place_list/shrine_list/${Uri.encodeComponent(placeId.toString())}/detail/${Uri.encodeComponent(shrineId.toString())}',
+        '/workspaces/workspaces/${Uri.encodeComponent(id.toString())}',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -130,6 +194,8 @@ final goRouterProvider = AutoDisposeProvider<GoRouter>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef GoRouterRef = AutoDisposeProviderRef<GoRouter>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

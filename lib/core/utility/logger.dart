@@ -1,17 +1,30 @@
 import 'package:flutter/foundation.dart';
-import 'package:simple_logger/simple_logger.dart';
+import 'package:logger/logger.dart';
 
-late final SimpleLogger _logger;
-SimpleLogger get logger => _logger;
+late final Logger _logger;
+Logger get logger => _logger;
 
-class Logger {
+class LoggerClass {
   // プライベートコンストラクト
-  Logger._();
+  LoggerClass._();
   static void configure() {
-    _logger = SimpleLogger()
-      ..setLevel(
-        kDebugMode ? Level.FINE : Level.OFF,
-        includeCallerInfo: kDebugMode,
-      );
+    _logger = Logger(
+      printer: PrettyPrinter(
+
+      )
+    );
+    // _logger = SimpleLogger()
+    //   ..setLevel(
+    //     kDebugMode ? Level.FINE : Level.OFF,
+    //     includeCallerInfo: kDebugMode,
+    //   );
   }
 }
+
+// logger.v('Hello logger!');
+// logger.d(1000);
+// logger.i(true);
+// logger.w([1, 2, 3]);
+// logger.e({'key': 'key', 'value': 'value'});
+// logger.wtf(Exception('例外もいけます'));
+// logger.i(() => '関数もいけます');

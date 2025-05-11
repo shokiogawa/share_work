@@ -27,8 +27,12 @@ mixin _$PlaceData {
   @JsonKey(name: 'updated_at')
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
+  /// Serializes this PlaceData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PlaceData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PlaceDataCopyWith<PlaceData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -55,6 +59,8 @@ class _$PlaceDataCopyWithImpl<$Res, $Val extends PlaceData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PlaceData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -107,6 +113,8 @@ class __$$PlaceDataImplCopyWithImpl<$Res>
       _$PlaceDataImpl _value, $Res Function(_$PlaceDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PlaceData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -178,11 +186,13 @@ class _$PlaceDataImpl extends _PlaceData {
                 other.updatedAt == updatedAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, createdAt, updatedAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlaceData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlaceDataImplCopyWith<_$PlaceDataImpl> get copyWith =>
@@ -218,8 +228,11 @@ abstract class _PlaceData extends PlaceData {
   @override
   @JsonKey(name: 'updated_at')
   DateTime? get updatedAt;
+
+  /// Create a copy of PlaceData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlaceDataImplCopyWith<_$PlaceDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
