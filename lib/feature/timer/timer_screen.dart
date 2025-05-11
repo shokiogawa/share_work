@@ -233,7 +233,9 @@ class TimerScreen extends HookConsumerWidget {
                   Row(
                     children: [
                       ElevatedButton(
-                        onPressed: controller.pauseTimer,
+                        onPressed: timerState.timerState == TimerStateEnum.pose 
+                            ? controller.resumeTimer 
+                            : controller.pauseTimer,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           foregroundColor: Colors.orange,
@@ -247,9 +249,9 @@ class TimerScreen extends HookConsumerWidget {
                             width: 2,
                           ),
                         ),
-                        child: const Text(
-                          'ポーズ',
-                          style: TextStyle(
+                        child: Text(
+                          timerState.timerState == TimerStateEnum.pose ? '再開' : 'ポーズ',
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
