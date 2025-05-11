@@ -25,7 +25,7 @@ class WorkController extends _$WorkController {
       name: name,
       status: WorkStatus.running,
       startDate: now,
-      endDate: now.add(const Duration(hours: 1)), // 仮の終了時間（1時間後）
+      endDate: null, // 終了時間はnullで作成
       createdBy: userId,
     );
     
@@ -84,4 +84,4 @@ class WorkController extends _$WorkController {
     state = AsyncValue.data(work);
     return work;
   }
-} 
+}   
